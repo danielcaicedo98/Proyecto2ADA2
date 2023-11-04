@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resolver Modelo MiniZinc</title>
+</head>
+<body>
+    <h1>Selecciona un archivo MiniZinc</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="archivo" accept=".mzn">
+        <input type="submit" value="Resolver">
+    </form>
+    {% if resultado %}
+    <div>{{ resultado }}</div>
+    {% endif %}
+</body>
+</html>
