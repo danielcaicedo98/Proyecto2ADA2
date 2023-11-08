@@ -6,8 +6,9 @@
 <body>
     <h1>Selecciona un archivo MiniZinc</h1>
     <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="archivo" accept=".mzn">
-        <input type="submit" value="Resolver">
+        <input type="file" name="archivo" >
+        <input type="submit" value="Cargar">
+        <input type="button" value="Resolver">
     </form>
     {% if resultado %}
     <div>{{ resultado }}</div>
