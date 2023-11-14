@@ -4,11 +4,11 @@
     <title>Resolver Modelo MiniZinc</title>
 </head>
 <body>
-    <h1>Selecciona un archivo MiniZinc</h1>
+    <h1>Selecciona un archivo con los Datos de Entrada</h1>
     <form method="POST" enctype="multipart/form-data">
         <input type="file" name="archivo" >
-        <input type="submit" value="Cargar">
-        <input type="button" value="Resolver">
+        <input type="submit" value="Resolver">
+        <!-- <input type="button" value="Resolver"> -->
     </form>
     {% if resultado %}
     <div>{{ resultado }}</div>

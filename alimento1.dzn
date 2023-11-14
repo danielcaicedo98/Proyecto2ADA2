@@ -1,9 +1,0 @@
-% Define los parámetros
-var float: CoeficienteX = 15;
-var float: CoeficienteY = 20;
-var float: LimiteRestriccion1 = 60;
-var float: CoeficienteX2 = 10;
-var float: CoeficienteY2 = 5;
-var float: LimiteRestriccion2 = 30;
-var float: CoeficienteX3 = 80;
-var float: CoeficienteY3 = 50;
