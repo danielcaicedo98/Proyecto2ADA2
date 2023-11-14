@@ -1,11 +1,16 @@
 from flask import Flask, render_template, request, send_file
 import os
 import minizinc
+import ast
 
 app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+    resultado = {
+        'numero': None,
+        'matriz': None
+    }
     if request.method == "POST":
         archivo = request.files["archivo"]
         if archivo:
@@ -22,25 +27,25 @@ def index():
                 print(lines[3].split(","))
                 # Crear un diccionario para mapear las letras a las listas
                 diccionario = {
-                    'E': [],
-                    'A': [],
-                    'G': [],
-                    'F': [],
-                    'V': [],
-                    'piso': [],
-                    'techo': [],
-                    'Sup': [],
-                    'Inf': [],
-                    'P': [],
-                    'D': [],
-                    'R': []
+                    'E': [int(x) for x in lines[2].split(',')],
+                    'A': [float(x) for x in lines[3].split(',')],
+                    'G': [int(x) for x in lines[4].split(',')],
+                    'F': [int(x) for x in lines[5].split(',')],
+                    'V': [float(x) for x in lines[6].split(',')],
+                    'piso': [int(x) for x in lines[7].split(',')],
+                    'techo': [int(x) for x in lines[8].split(',')],
+                    'Sup': [int(x) for x in lines[9].split(',')],
+                    'Inf': [int(x) for x in lines[10].split(',')],
+                    'P': [int(x) for x in lines[11].split(',')],
+                    'D': [int(x) for x in lines[12].split(',')],
+                    'R': [int(x) for x in lines[13].split(',')]
                 }
 
                 # for i, grupo in enumerate(grupos):
-                for i in range(2, 14):
-                    letra = list(diccionario.keys())[i - 2]
-                    valores = [float(x) for x in lines[i].split(',')]
-                    diccionario[letra] = valores
+                # for i in range(2, 14):
+                #     letra = list(diccionario.keys())[i - 2]
+                #     valores = [float(x) for x in lines[i].split(',')]
+                #     diccionario[letra] = valores
 
                 # Abrir el archivo de salida para escritura
                 with open(archivo_salida, 'w') as f:
@@ -70,11 +75,18 @@ def index():
             # Configura los parámetros o variables según sea necesario
 
             # Resuelve la instancia
-            result = instance.solve()
+            result = str(instance.solve()).split(";")      
+            result[1] = eval(result[1])      
+            result[1] = [result[1][i:i+K] for i in range(0, len(result[1]), K)]
+            print(result[1])
 
-            return str(result)
+            #return str(result)
+            matriz_resultante = [[150, 300, 300], [0, 100, 100], [0, 100, 0]]
+            #matriz_resultante = ast.literal_eval(matriz_resultante.replace('\n', '').replace(',', ''))
+            resultado['numero'] = str(result[0])
+            resultado['matriz'] = result[1]          
 
-    return render_template("index.html")
+    return render_template("index.html", **resultado)
 
 if __name__ == "__main__":
     app.run(debug=True)

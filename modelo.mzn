@@ -2,18 +2,18 @@
 include "./parametros.dzn";
 int: J;
 int: K;
-array[1..J] of float: E;
+array[1..J] of int: E;
 array[1..J] of float: A;
-array[1..J] of float: G;
-array[1..J] of float: F;
+array[1..J] of int: G;
+array[1..J] of int: F;
 array[1..J] of float: V;
-array[1..J] of float: piso;
-array[1..J] of float: techo;
-array[1..J] of float: Sup;
-array[1..J] of float: Inf;
-array[1..J] of float: P;
-array[1..K] of float: D;
-array[1..K] of float: R;
+array[1..J] of int: piso;
+array[1..J] of int: techo;
+array[1..J] of int: Sup;
+array[1..J] of int: Inf;
+array[1..J] of int: P;
+array[1..K] of int: D;
+array[1..K] of int: R;
 
 
 %Variables:
@@ -106,3 +106,5 @@ constraint potencia = sum(k in 1..K)(
 );
 
 solve minimize potencia;
+
+output["\(potencia);\(p)"];

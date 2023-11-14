@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Resolver Modelo MiniZinc</title>
 </head>
+
 <body>
     <h1>Selecciona un archivo con los Datos de Entrada</h1>
     <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="archivo" >
+        <input type="file" name="archivo">
         <input type="submit" value="Resolver">
-        <!-- <input type="button" value="Resolver"> -->
     </form>
-    {% if resultado %}
-    <div>{{ resultado }}</div>
+
+    {% if numero %}
+    <h2>Costo de la Solución:</h2>
+    <div>{{ numero }}</div>
+    {% endif %}
+    {% if matriz %}
+    <h2>Matriz de Potencia Generada:</h2>
+    <table border="1">
+        {% for fila in matriz  %}
+        <tr>
+            {% for elemento in fila %}
+            <td>{{ elemento }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
     {% endif %}
 </body>
+
 </html>
