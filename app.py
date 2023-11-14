@@ -3,7 +3,7 @@ import os
 import minizinc
 import ast
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 @app.route("/", methods=["GET", "POST"])
 def index():

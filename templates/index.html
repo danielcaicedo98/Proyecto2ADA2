@@ -1,32 +1,39 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Resolver Modelo MiniZinc</title>
 </head>
 
 <body>
-    <h1>Selecciona un archivo con los Datos de Entrada</h1>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="archivo">
-        <input type="submit" value="Resolver">
-    </form>
+    <div class="container">
+        <h1>Selecciona un archivo con los Datos de Entrada</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="archivo">
+            <input type="submit" value="Resolver">
+        </form>
 
-    {% if numero %}
-    <h2>Costo de la Solución:</h2>
-    <div>{{ numero }}</div>
-    {% endif %}
-    {% if matriz %}
-    <h2>Matriz de Potencia Generada:</h2>
-    <table border="1">
-        {% for fila in matriz  %}
-        <tr>
-            {% for elemento in fila %}
-            <td>{{ elemento }}</td>
-            {% endfor %}
-        </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
+        {% if numero %}
+            <h2>Costo de la Solución:</h2>
+            <div>{{ numero }}</div>
+        {% endif %}
+        {% if matriz %}
+            <h2>Matriz de Potencia Generada:</h2>
+            <table border="1">
+                {% for fila in matriz %}
+                    <tr>
+                        {% for elemento in fila %}
+                            <td>{{ elemento }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
 </body>
+
 </html>
