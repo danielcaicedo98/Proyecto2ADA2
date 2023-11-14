@@ -77,12 +77,7 @@ def index():
             # Resuelve la instancia
             result = str(instance.solve()).split(";")      
             result[1] = eval(result[1])      
-            result[1] = [result[1][i:i+K] for i in range(0, len(result[1]), K)]
-            print(result[1])
-
-            #return str(result)
-            matriz_resultante = [[150, 300, 300], [0, 100, 100], [0, 100, 0]]
-            #matriz_resultante = ast.literal_eval(matriz_resultante.replace('\n', '').replace(',', ''))
+            result[1] = [result[1][i:i+K] for i in range(0, len(result[1]), K)]                   
             resultado['numero'] = str(result[0])
             resultado['matriz'] = result[1]          
 
