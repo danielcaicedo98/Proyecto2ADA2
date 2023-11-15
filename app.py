@@ -9,12 +9,14 @@ app = Flask(__name__, static_folder='static')
 def index():
     resultado = {
         'numero': None,
-        'matriz': None
+        'matriz': None,
+        'contenido_archivo': None
     }
     if request.method == "POST":
         archivo = request.files["archivo"]
         if archivo:
             contenido = archivo.read().decode('utf-8')
+            resultado['contenido_archivo'] = contenido
             lines = contenido.split("\n")
             archivo_salida = "parametros.dzn"
             try:
@@ -79,7 +81,7 @@ def index():
             result[1] = eval(result[1])      
             result[1] = [result[1][i:i+K] for i in range(0, len(result[1]), K)]                   
             resultado['numero'] = str(result[0])
-            resultado['matriz'] = result[1]          
+            resultado['matriz'] = result[1]        
 
     return render_template("index.html", **resultado)
 

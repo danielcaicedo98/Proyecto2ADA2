@@ -3,17 +3,52 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
     max-width: 800px;
     margin: 20px auto;
-    padding: 20px;
+    padding: 25px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+.resultados {
+    display: flex;
+    justify-content: space-around; 
+    align-items: flex-start;
+    text-align: center;
+}
+.content-left,
+.content-right {
+    text-align: left;
+    max-width: 40%;
+    align-items: self-start; 
+    min-height: 200px; 
+}
 
-h1, h2 {
+
+h1{
+    text-align: center;
+}
+
+.content-text {
+    font-size: 16px;
+    font-family: 'Arial', sans-serif; 
+}
+
+
+
+h1{
+    text-align: center;
+    color: #333;
+
+}
+
+h2 {
     color: #333;
 }
 
@@ -24,6 +59,9 @@ form {
 input[type="file"] {
     padding: 10px;
     margin-right: 10px;
+    display: block; 
+    margin: 10px auto; 
+    padding: 10px;
 }
 
 input[type="submit"] {
@@ -32,6 +70,9 @@ input[type="submit"] {
     color: #fff;
     border: none;
     cursor: pointer;
+    display: block; 
+    margin: 10px auto; 
+    padding: 10px;
 }
 
 table {

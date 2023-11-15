@@ -6,33 +6,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>Resolver Modelo MiniZinc</title>
+    <title>Modelo</title>
 </head>
 
 <body>
     <div class="container">
-        <h1>Selecciona un archivo con los Datos de Entrada</h1>
+        <h1>Planificación de unidades de Energía Térmica</h1>
         <form method="POST" enctype="multipart/form-data">
             <input type="file" name="archivo">
-            <input type="submit" value="Resolver">
-        </form>
+            <input type="submit" value="Resolver">  
+        </form> 
 
-        {% if numero %}
-            <h2>Costo de la Solución:</h2>
-            <div>{{ numero }}</div>
+        {% if contenido_archivo %}
+        <div class="resultados">
+            <h1>Entrada </h1>
+            <h1>Resultado </h1>
         {% endif %}
-        {% if matriz %}
-            <h2>Matriz de Potencia Generada:</h2>
-            <table border="1">
-                {% for fila in matriz %}
-                    <tr>
-                        {% for elemento in fila %}
-                            <td>{{ elemento }}</td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </table>
-        {% endif %}
+        </div>
+        <div class="resultados">
+            <div class="content-left">
+                {% if contenido_archivo %}
+                
+                <textarea rows="15" cols="30" class="content-text" readonly>{{ contenido_archivo }}</textarea>
+                
+                {% endif %}
+            </div>    
+    
+            <div class="content-right">
+                
+                {% if numero %}
+                
+                <h2>Costo  {{ numero }}</h2>
+                {% endif %}
+    
+                {% if matriz %}
+                <h2>Matriz de Potencia </h2>
+                <table border="1">
+                    {% for fila in matriz %}
+                        <tr>
+                            {% for elemento in fila %}
+                                <td>{{ elemento }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+            </div>
+
+        </div>
+        
+       
+
+        
     </div>
 </body>
 
