@@ -61,10 +61,12 @@ def index():
             except Exception as e:
                 print(f"Ocurrió un error: {e}")
 
-            archivo_nombre = 'modelo.mzn'
+            archivo_nombre = '../PUEnTE.mzn'
 
             # Crea un entorno MiniZinc
             gecode = minizinc.Solver.lookup("coin-bc")
+
+         
 
             # Carga el modelo MiniZinc desde el archivo
             model = minizinc.Model(archivo_nombre)

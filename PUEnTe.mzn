@@ -1,5 +1,6 @@
 %Lectura de datos:
-include "./parametros.dzn";
+include "./PUEnTeGUIFuentes/parametros.dzn";
+include "ide/vis.mzn";
 int: J;
 int: K;
 array[1..J] of int: E;
@@ -31,7 +32,7 @@ constraint forall(k in 1..K)(
 
 %1
 constraint forall(k in 1..K)(
-  forall(j in 1..J)((p[j,k] >= 0 /\ p[j,k] <= 0) \/  (p[j,k] >= piso[j]))
+    forall(j in 1..J)((p[j,k] >= 0 /\ p[j,k] <= 0) \/  (p[j,k] >= piso[j]))
 );
 
 %2
@@ -94,6 +95,20 @@ constraint forall(k in 1..1)(
   forall(j in 1..J)(if ( G[j] = 1 /\ p[j,k]  = 0) then a[j,k] = 1 else a[j,k] = 0 endif)
 );
 
+%13
+
+constraint forall(k in 1..1)(
+  forall(j in 1..J)(if ( G[j] = 1 /\ p[j,k]  > 0 /\ P[j]  > 0) then p[j,k]  - P[j] <= Sup[j] else true endif)
+);
+
+%14
+
+constraint forall(k in 1..1)(
+  forall(j in 1..J)(if ( G[j] = 1 /\ p[j,k]  > 0 /\ P[j]  > 0) then  P[j] - p[j,k]  <= Inf[j] else true endif)
+);
+
+
+
 var float: costo_total;
 
 constraint costo_total = sum(k in 1..K)(
@@ -102,47 +117,9 @@ constraint costo_total = sum(k in 1..K)(
 
 solve minimize costo_total;
 
+
+
 output["\(costo_total);"];
 % output["\(e);"];
 % output["\(a);"];
 output["\(p);"];
-
-
-
-% [0, 0, 0,
-%  0, 0, 0,
-%   0, 0, 0];
-% [0, 1, 1,
-%  1, 1, 1,
-%   1, 1, 0];
-% [150, 300, 300,
-%  0, 100, 100,
-%   0, 100, 0]
-
-% [1, 0, 0
-% , 0, 1, 0,
-%  0, 1, 0];
-% [0, 1, 1,
-%  0, 1, 1,
-%   0, 1, 0];
-% [150, 300, 300,
-%  0, 100, 100, 
-%  0, 100, 0];
-
-% [1, 0, 0,
-%  0, 1, 0,
-%   0, 1, 0];
-% [0, 0, 0,
-%  0, 0, 0,
-%   0, 0, 1];
-% [150, 300, 300,
-%  0, 100, 100,
-%   0, 100, 0];
-% [1, 1, 1,
-%  0, 1, 1,
-%   0, 1, 0]
-
-% [150, 300, 300,
-%  0, 160, 100,
-%   0, 40, 0];
-% 192.5
