@@ -120,6 +120,4 @@ solve minimize costo_total;
 
 
 output["\(costo_total);"];
-% output["\(e);"];
-% output["\(a);"];
 output["\(p);"];
