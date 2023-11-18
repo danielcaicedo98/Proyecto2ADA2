@@ -1,96 +1,49 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
 
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 25px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.resultados {
-    display: flex;
-    justify-content: space-around; 
-    align-items: flex-start;
-    text-align: center;
-}
-.content-left,
-.content-right {
-    text-align: left;
-    max-width: 40%;
-    align-items: self-start; 
-    min-height: 200px; 
-}
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 20px;
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
 
-h1{
-    text-align: center;
-}
+    form {
+        margin-bottom: 20px;
+    }
 
-.content-text {
-    font-size: 16px;
-    font-family: 'Arial', sans-serif; 
-}
+    #resultado {
+        margin-top: 20px;
+    }
 
+    pre {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
 
+    table {
+        margin-top: 20px;
+    }
 
-h1{
-    text-align: center;
-    color: #333;
+    th, td {
+        padding: 10px;
+        border: 1px solid #dee2e6;
+        text-align: left;
+    }
 
-}
+    button.btn-primary {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
 
-h2 {
-    color: #333;
-}
-
-form {
-    margin-bottom: 20px;
-}
-
-input[type="file"] {
-    padding: 10px;
-    margin-right: 10px;
-    display: block; 
-    margin: 10px auto; 
-    padding: 10px;
-}
-
-input[type="submit"] {
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    display: block; 
-    margin: 10px auto; 
-    padding: 10px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #4caf50;
-    color: #fff;
-}
+    button.btn-primary:hover {
+        background-color: #218838;
+        border-color: #218838;
+    }

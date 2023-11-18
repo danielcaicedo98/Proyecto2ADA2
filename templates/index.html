@@ -1,64 +1,76 @@
-
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Modelo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    
 </head>
-
 <body>
     <div class="container">
-        <h1>Planificación de unidades de Energía Térmica</h1>
-        <form method="POST" enctype="multipart/form-data">
-            <input type="file" name="archivo">
-            <input type="submit" value="Resolver">  
-        </form> 
+        <h1 class="mt-4"> Planificación de Unidades de Energía Térmica </h1>
 
-        {% if contenido_archivo %}
-        <div class="resultados">
-            <h1>Entrada </h1>
-            <h1>Resultado </h1>
-        {% endif %}
+        <form method="post" action="/" enctype="multipart/form-data" id="formulario">
+            <div class="form-group">
+                <label for="archivo">Seleccionar Archivo:</label>
+                <input type="file" class="form-control-file" name="archivo" accept=".txt" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Procesar Archivo</button>
+        </form>
+
+        <div id="contenido-archivo">
+            {% if contenido_archivo %}
+                <h2>Archivo de entrada</h2>
+                <pre>{{ contenido_archivo }}</pre>
+            {% endif %}
         </div>
-        <div class="resultados">
-            <div class="content-left">
-                {% if contenido_archivo %}
-                
-                <textarea rows="15" cols="30" class="content-text" readonly>{{ contenido_archivo }}</textarea>
-                
-                {% endif %}
-            </div>    
-    
-            <div class="content-right">
-                
-                {% if numero %}
-                
-                <h2>Costo  {{ numero }}</h2>
-                {% endif %}
-    
-                {% if matriz %}
-                <h2>Matriz de Potencia </h2>
-                <table border="1">
+
+        <div id="resultado">
+            {% if numero %}
+                <h2>Resultado</h2>
+                <h3>Costo de la solución: {{ numero }}</h3>
+                <h3>Matriz:</h3>
+                <table>
                     {% for fila in matriz %}
                         <tr>
-                            {% for elemento in fila %}
-                                <td>{{ elemento }}</td>
+                            {% for valor in fila %}
+                                <td>{{ valor }}</td>
                             {% endfor %}
                         </tr>
                     {% endfor %}
                 </table>
-                {% endif %}
-            </div>
-
+            {% endif %}
         </div>
-        
-       
-
-        
     </div>
-</body>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Actualizar el contenido del archivo cuando se selecciona un nuevo archivo
+        document.getElementById('formulario').addEventListener('change', function(event) {
+            var archivoInput = event.target.querySelector('input[type="file"]');
+            var contenidoArchivoDiv = document.getElementById('contenido-archivo');
+            var resultadoDiv = document.getElementById('resultado');
+    
+            contenidoArchivoDiv.innerHTML = '';
+            resultadoDiv.innerHTML = ''; // Limpiar la sección de resultados
+    
+            if (archivoInput.files.length > 0) {
+                var archivo = archivoInput.files[0];
+                var lector = new FileReader();
+    
+                lector.onload = function(e) {
+                    var contenido = e.target.result;
+                    contenidoArchivoDiv.innerHTML = '<h2>Contenido del Archivo:</h2><pre>' + contenido + '</pre>';
+                };
+    
+                lector.readAsText(archivo);
+            }
+        });
+    </script>
+</body>
 </html>
