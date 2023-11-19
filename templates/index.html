@@ -17,7 +17,7 @@
                 <label for="archivo">Seleccionar Archivo:</label>
                 <input type="file" class="form-control-file" name="archivo" accept=".txt" required>
             </div>
-            <button type="submit" class="btn btn-primary">Procesar Archivo</button>
+            <button type="submit" class="btn btn-primary" id="botonProcesar">Procesar Archivo</button>
         </form>
 
         <div id="contenido-archivo">
@@ -50,25 +50,38 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        // Actualizar el contenido del archivo cuando se selecciona un nuevo archivo
+        var procesoEnCurso = false;
+
         document.getElementById('formulario').addEventListener('change', function(event) {
             var archivoInput = event.target.querySelector('input[type="file"]');
             var contenidoArchivoDiv = document.getElementById('contenido-archivo');
             var resultadoDiv = document.getElementById('resultado');
+            var botonProcesar = document.getElementById('botonProcesar');
     
             contenidoArchivoDiv.innerHTML = '';
-            resultadoDiv.innerHTML = ''; // Limpiar la sección de resultados
+            resultadoDiv.innerHTML = '';
+
+            // Si hay un proceso en curso, cancelarlo
+            if (procesoEnCurso) {
+                procesoEnCurso = false;
+                botonProcesar.textContent = 'Procesar Archivo';
+                botonProcesar.style.backgroundColor = '';
+            }
     
             if (archivoInput.files.length > 0) {
-                var archivo = archivoInput.files[0];
-                var lector = new FileReader();
-    
-                lector.onload = function(e) {
-                    var contenido = e.target.result;
-                    contenidoArchivoDiv.innerHTML = '<h2>Contenido del Archivo:</h2><pre>' + contenido + '</pre>';
-                };
-    
-                lector.readAsText(archivo);
+                // Cambiar el texto y color del botón durante la selección de archivo
+                botonProcesar.textContent = 'Procesar Archivo';
+                botonProcesar.style.backgroundColor = '';
+            }
+        });
+
+        document.getElementById('formulario').addEventListener('submit', function() {
+            // Iniciar el procesamiento solo si no hay otro proceso en curso
+            if (!procesoEnCurso) {
+                var botonProcesar = document.getElementById('botonProcesar');
+                procesoEnCurso = true;
+                botonProcesar.textContent = 'Procesando...';
+                botonProcesar.style.backgroundColor = 'orange';
             }
         });
     </script>

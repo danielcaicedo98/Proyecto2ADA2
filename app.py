@@ -55,7 +55,7 @@ def index():
                     f.write(f'K = {K};\n')
                     for letra, valores in diccionario.items():
                         f.write(f'{letra} = {valores};\n')
-
+                resultado['mostrar_boton'] = True
                 print(f'Procesamiento completado. Resultados escritos en {archivo_salida}')
 
             except FileNotFoundError:
@@ -81,7 +81,8 @@ def index():
             result[1] = eval(result[1])      
             result[1] = [result[1][i:i+K] for i in range(0, len(result[1]), K)]                   
             resultado['numero'] = str(result[0])
-            resultado['matriz'] = result[1]        
+            resultado['matriz'] = result[1]    
+            resultado['mostrar_boton'] = False    
 
     return render_template("index.html", **resultado)
 

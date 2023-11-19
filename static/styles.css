@@ -47,3 +47,8 @@
         background-color: #218838;
         border-color: #218838;
     }
+
+    .procesando {
+        background-color: orange;  
+        color: #28a745;  
+    }
