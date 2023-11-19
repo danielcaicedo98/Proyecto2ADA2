@@ -63,10 +63,12 @@ def index():
             except Exception as e:
                 print(f"Ocurrió un error: {e}")
 
-            archivo_nombre = 'modelo.mzn'
+            archivo_nombre = '../PUEnTE.mzn'
 
             # Crea un entorno MiniZinc
             gecode = minizinc.Solver.lookup("coin-bc")
+
+         
 
             # Carga el modelo MiniZinc desde el archivo
             model = minizinc.Model(archivo_nombre)
@@ -76,13 +78,21 @@ def index():
 
             # Configura los parámetros o variables según sea necesario
 
+            
             # Resuelve la instancia
-            result = str(instance.solve()).split(";")      
-            result[1] = eval(result[1])      
-            result[1] = [result[1][i:i+K] for i in range(0, len(result[1]), K)]                   
-            resultado['numero'] = str(result[0])
-            resultado['matriz'] = result[1]    
+
             resultado['mostrar_boton'] = False    
+
+            result = str(instance.solve()).split(";")     
+            print(result) 
+            if (result[0] == 'None'):                
+                resultado['numero'] = 'INSATISFACTIBLE'
+                resultado['matriz'] = []
+            else:    
+                result[1] = eval(result[1])      
+                result[1] = [result[1][i:i+K] for i in range(0, len(result[1]), K)]                   
+                resultado['numero'] = str(result[0])
+                resultado['matriz'] = result[1]          
 
     return render_template("index.html", **resultado)
 

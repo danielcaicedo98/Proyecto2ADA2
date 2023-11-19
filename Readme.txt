@@ -1,0 +1,21 @@
+Proyecto Planificacion de Unidades de Energía Térmica
+El siguiente proyecto está desrrollado por Estudiantes de la Universidad del Valle para el curso de Analisisi y Diseño de Algoritmos 2.
+
+Para ejecutar el proyecto
+
+1. Abrir una terminal, ubicarse en el directorio PUEnTeGUIFuentes 
+2. Escribir en la terminal el siguiente comando: 
+   py app.py
+3. Abrir la siguiente ruta en el navegador:
+   http://127.0.0.1:5000/
+4. Seleccionar el archivo .txt que desea resolver
+5. Presionar el botón resolver y esperar a que la interfaz muestre los resultados
+   esto puede llegar a tardar un poco si hay muchos datos de entrada.
+
+
+Integrantes
+
+Juan David Tovar
+Sebastian Peñaranda Hurtado 
+Natalia Riaños Horta
+Daniel Andres Caicedo 
