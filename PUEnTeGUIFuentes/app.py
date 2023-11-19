@@ -76,12 +76,18 @@ def index():
 
             # Configura los parámetros o variables según sea necesario
 
+            
             # Resuelve la instancia
-            result = str(instance.solve()).split(";")      
-            result[1] = eval(result[1])      
-            result[1] = [result[1][i:i+K] for i in range(0, len(result[1]), K)]                   
-            resultado['numero'] = str(result[0])
-            resultado['matriz'] = result[1]          
+            result = str(instance.solve()).split(";")     
+            print(result) 
+            if (result[0] == 'None'):                
+                resultado['numero'] = 'INSATISFACTIBLE'
+                resultado['matriz'] = []
+            else:    
+                result[1] = eval(result[1])      
+                result[1] = [result[1][i:i+K] for i in range(0, len(result[1]), K)]                   
+                resultado['numero'] = str(result[0])
+                resultado['matriz'] = result[1]          
 
     return render_template("index.html", **resultado)
 
