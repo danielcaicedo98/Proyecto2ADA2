@@ -50,7 +50,7 @@ constraint forall(k in 2..K)(
 %4
 
 constraint forall(k in 2..K)(
-  forall(j in 1..J)( if p[j,k] > 0 /\ p[j,k-1] > 0 then   ( p[j,k-1] - p[j,k-1]) <= Inf[j] else true endif  )  
+  forall(j in 1..J)( if p[j,k] > 0 /\ p[j,k-1] > 0 then   ( p[j,k-1] - p[j,k]) <= Inf[j] else true endif  )  
 );
 
 %5
