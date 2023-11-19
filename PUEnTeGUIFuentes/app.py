@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, send_file
 import os
 import minizinc
 import ast
-
+import time
 app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
@@ -78,7 +78,13 @@ def index():
 
             
             # Resuelve la instancia
-            result = str(instance.solve()).split(";")     
+            start_time = time.time()
+            result = str(instance.solve()).split(";")  
+            # result = "None;[[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]]"         
+            
+            end_time = time.time()  
+            elapsed_time = end_time - start_time  
+            print("Tiempo de ejecución:", elapsed_time, "segundos")     
             print(result) 
             if (result[0] == 'None'):                
                 resultado['numero'] = 'INSATISFACTIBLE'
