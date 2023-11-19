@@ -5,7 +5,7 @@ Para ejecutar el proyecto
 
 1. Abrir una terminal, ubicarse en el directorio PUEnTeGUIFuentes que está dentro de la carpeta de nuestro proyecto
 2. Instalar Flask y minizinc, para eso puede usar el archivo requirements.txt que está dentro del directorio PUEnTeGUIFuentes
-   para eso puede usar el siguiente comando:
+   usando el siguiente comando:
    -  pip install -r requirements.txt
    En caso de que nos funcione  con esto, usar los siguientes comandos para instalar las librerias necesarias:
    -  pip install Flask
