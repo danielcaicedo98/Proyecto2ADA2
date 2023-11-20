@@ -10,7 +10,9 @@ def index():
     resultado = {
         'numero': None,
         'matriz': None,
-        'contenido_archivo': None
+        'contenido_archivo': None,
+        'cantidad_filas': None, 
+        'cantidad_columnas': None
     }
     if request.method == "POST":
         archivo = request.files["archivo"]
@@ -77,12 +79,8 @@ def index():
             instance = minizinc.Instance(gecode, model)
 
             # Configura los parámetros o variables según sea necesario
-
-            
+                       
             # Resuelve la instancia
-
-            resultado['mostrar_boton'] = False    
-
             result = str(instance.solve()).split(";")     
             print(result) 
             if (result[0] == 'None'):                
@@ -94,6 +92,13 @@ def index():
                 resultado['numero'] = str(result[0])
                 resultado['matriz'] = result[1]          
 
+            cantidad_filas = len(resultado['matriz'])
+            cantidad_columnas = len(resultado['matriz'][0])
+
+            resultado['mostrar_boton'] = False  
+            resultado['cantidad_filas'] = cantidad_filas
+            resultado['cantidad_columnas'] = cantidad_columnas  
+            
     return render_template("index.html", **resultado)
 
 if __name__ == "__main__":

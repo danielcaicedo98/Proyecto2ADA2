@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     
+  
 </head>
 <body>
     <div class="container">
@@ -29,18 +30,31 @@
 
         <div id="resultado">
             {% if numero %}
-                <h2>Resultado</h2>
-                <h3>Costo de la solución: {{ numero }}</h3>
-                <h3>Matriz:</h3>
-                <table>
-                    {% for fila in matriz %}
+            <h2>Resultado</h2>
+            <h3>Costo de la solución: {{ numero }}</h3>
+            <h3>Matriz:</h3>
+            <div class="table-container">
+                <table class="table table-bordered table-sm">
+                    <thead>
                         <tr>
-                            {% for valor in fila %}
-                                <td>{{ valor }}</td>
+                            <th>Periodo <br> Utpee</th>
+                            {% for periodo in range(1, cantidad_columnas + 1) %}
+                                <th>{{ periodo }}</th>
                             {% endfor %}
                         </tr>
-                    {% endfor %}
+                    </thead>
+                    <tbody>
+                        {% for i in range(cantidad_filas) %}
+                            <tr>
+                                <th> {{ i + 1 }}</th>
+                                {% for valor in matriz[i] %}
+                                    <td>{{ valor }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
                 </table>
+            </div>
             {% endif %}
         </div>
     </div>

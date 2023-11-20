@@ -1,2 +1,2 @@
-pip install Flask
-pip install minizinc
+Flask
+minizinc

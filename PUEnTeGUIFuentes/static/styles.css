@@ -31,11 +31,15 @@ pre {
 table {
     margin-top: 20px;
 }
+.table-container {
+    overflow-x: auto;
+}
 
 th, td {
     padding: 10px;
     border: 1px solid #dee2e6;
     text-align: left;
+    font-size: smaller;
 }
 
 button.btn-primary {
