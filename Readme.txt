@@ -7,7 +7,7 @@ Para ejecutar el proyecto
 2. Instalar Flask y minizinc, para eso puede usar el archivo requirements.txt que está dentro del directorio PUEnTeGUIFuentes
    usando el siguiente comando:
    -  pip install -r requirements.txt
-   En caso de que nos funcione  con esto, usar los siguientes comandos para instalar las librerias necesarias:
+   En caso de que no funcione  con esto, usar los siguientes comandos para instalar las librerias necesarias:
    -  pip install Flask
    -  pip install minizinc
    
