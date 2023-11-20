@@ -54,8 +54,13 @@ Archivos y Directorios entregados
   > Mi_Instancia1.txt: esta instancia no tiene tantos datos, 6 utpee y 7 ciclos. Es más que todo para hacer una prueba rápida.
   > Mi_Instancia2.txt: esta instancia tiene pocos datos, 6 utpee y 7 ciclos. Sin embargo lo que la diferencia es que se está teniendo en cuenta 
     si las utpee ya venian encencidas antes del primer ciclo.
-  > Mi_Instancia3.txt: esta instancia tiene más datos 30 utpee y 30 ciclos. Lo que caracteriza a esta instancia es que el en cada cico la demanda es muy alta
+  > Mi_Instancia3.txt: esta instancia tiene más datos 30 utpee y 30 ciclos. Lo que caracteriza a esta instancia es que en cada cico la demanda es muy alta
     por lo tanto la mayoría de las utpee se deben encender para cubrir esa demanda. 
+  > Mi_Instancia4.txt: esta instancia tiene más datos 15 utpee y 10 ciclos. Lo que caracteriza a esta instancia es que en cada cico la demanda es muy alta
+    por lo tanto la todas las utpee se deben encender para cubrir esa demanda.    
+  > Mi_Instancia5.txt: esta instancia tiene más datos 15 utpee y 15 ciclos. Lo que caracteriza a esta instancia es que la demanda total es posible cubrirse
+    usando solo una utpee, se está teniendo en cuenta también la reserva. En este caso, la demanda será cubierta por la utpee que genere el menor costo, además
+    de que cumpla con las demás restricciones. 
   
  
   
