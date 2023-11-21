@@ -1,32 +1,101 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
-    <title>Resolver Modelo MiniZinc</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-
 <body>
-    <h1>Selecciona un archivo con los Datos de Entrada</h1>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="archivo">
-        <input type="submit" value="Resolver">
-    </form>
+    <div class="container">
+        <h1 class="mt-4"> Planificación de Unidades de Energía Térmica </h1>
 
-    {% if numero %}
-    <h2>Costo de la Solución:</h2>
-    <div>{{ numero }}</div>
-    {% endif %}
-    {% if matriz %}
-    <h2>Matriz de Potencia Generada:</h2>
-    <table border="1">
-        {% for fila in matriz  %}
-        <tr>
-            {% for elemento in fila %}
-            <td>{{ elemento }}</td>
-            {% endfor %}
-        </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
+        <form method="post" action="/" enctype="multipart/form-data" id="formulario">
+            <div class="form-group">
+                <label for="archivo">Seleccionar Archivo:</label>
+                <input type="file" class="form-control-file" name="archivo" accept=".txt" required>
+            </div>
+            <button type="submit" class="btn btn-primary" id="botonProcesar">Procesar Archivo</button>
+        </form>
+
+        <div id="contenido-archivo">
+            {% if contenido_archivo %}
+                <h2>Archivo de entrada</h2>
+                <pre>{{ contenido_archivo }}</pre>
+            {% endif %}
+        </div>
+
+        <div id="resultado">
+            {% if numero %}
+                <h2>Resultado</h2>
+                <h3>Costo de la solución: {{ numero }}</h3>
+                <h3>Matriz:</h3>
+                <div class="table-container">
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                            <tr>
+                                <th>Periodo / Utpee</th>
+                                {% for periodo in range(1, cantidad_columnas + 1) %}
+                                    <th>{{ periodo }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in range(cantidad_filas) %}
+                                <tr>
+                                    <td>{{ i + 1 }}</td>
+                                    {% for valor in matriz[i] %}
+                                        <td>{{ valor }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        var procesoEnCurso = false;
+
+        document.getElementById('formulario').addEventListener('change', function(event) {
+            var archivoInput = event.target.querySelector('input[type="file"]');
+            var contenidoArchivoDiv = document.getElementById('contenido-archivo');
+            var resultadoDiv = document.getElementById('resultado');
+            var botonProcesar = document.getElementById('botonProcesar');
+    
+            contenidoArchivoDiv.innerHTML = '';
+            resultadoDiv.innerHTML = '';
+
+            // Si hay un proceso en curso, cancelarlo
+            if (procesoEnCurso) {
+                procesoEnCurso = false;
+                botonProcesar.textContent = 'Procesar Archivo';
+                botonProcesar.style.backgroundColor = '';
+            }
+    
+            if (archivoInput.files.length > 0) {
+                // Cambiar el texto y color del botón durante la selección de archivo
+                botonProcesar.textContent = 'Procesar Archivo';
+                botonProcesar.style.backgroundColor = '';
+            }
+        });
+
+        document.getElementById('formulario').addEventListener('submit', function() {
+            // Iniciar el procesamiento solo si no hay otro proceso en curso
+            if (!procesoEnCurso) {
+                var botonProcesar = document.getElementById('botonProcesar');
+                procesoEnCurso = true;
+                botonProcesar.textContent = 'Procesando...';
+                botonProcesar.style.backgroundColor = 'orange';
+            }
+        });
+    </script>
 </body>
 </html>
