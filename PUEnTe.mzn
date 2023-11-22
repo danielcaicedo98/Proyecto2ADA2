@@ -1,6 +1,5 @@
 %Lectura de datos:
 include "./PUEnTeGUIFuentes/parametros.dzn";
-include "ide/vis.mzn";
 int: J;
 int: K;
 array[1..J] of int: E;
